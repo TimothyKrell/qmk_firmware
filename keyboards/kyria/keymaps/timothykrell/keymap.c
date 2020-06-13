@@ -27,6 +27,7 @@ enum layers {
 #define MTGUI_F MT(MOD_LGUI, KC_F)
 #define MTCTL_D MT(MOD_LCTL, KC_D)
 #define MTALT_S MT(MOD_LALT, KC_S)
+#define MTSFT_A MT(MOD_LSFT, KC_A)
 #define MTGUI_Z MT(MOD_LGUI, KC_Z)
 #define MTCTL_X MT(MOD_LCTL, KC_X)
 #define MTALT_C MT(MOD_LALT, KC_C)
@@ -34,6 +35,7 @@ enum layers {
 #define MTGUI_J MT(MOD_LGUI, KC_J)
 #define MTCTL_K MT(MOD_LCTL, KC_K)
 #define MTALT_L MT(MOD_LALT, KC_L)
+#define MTSFT_SCLN MT(MOD_LSFT, KC_SCLN)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* 
@@ -52,7 +54,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
     [_QWERTY] = LAYOUT(
       LT(_RAISE, KC_ESC),       KC_Q,   KC_W,   KC_E,   KC_R,   KC_T,                                         KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_PIPE,
-      MT(MOD_LCTL, KC_TAB),   KC_A, MTALT_S, MTCTL_D, MTGUI_F,   KC_G,                                         KC_H, MTGUI_J, MTCTL_K, MTALT_L,    KC_SCLN, KC_QUOT,
+      MT(MOD_LCTL, KC_TAB), MTSFT_A, MTALT_S, MTCTL_D, MTGUI_F,  KC_G,                                         KC_H, MTGUI_J, MTCTL_K, MTALT_L, MTSFT_SCLN, KC_QUOT,
       KC_LSFT,              MTGUI_Z, MTCTL_X, MTALT_C,   KC_V,   KC_B,   KC_LSFT,   KC_LSFT, KC_LSFT, KC_LSFT, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_MINS,
               KC_LGUI, LT(_MACRO, KC_DEL), MT(MOD_LSFT, KC_ENT), LT(_LOWER, KC_SPC), LT(_RAISE, KC_ESC), LT(_LOWER, KC_ENT), LT(_RAISE, KC_SPC), MT(MOD_RSFT, KC_BSPC), LT(_MACRO, KC_TAB), KC_RALT
     ),
