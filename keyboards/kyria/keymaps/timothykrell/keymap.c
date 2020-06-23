@@ -23,6 +23,30 @@ enum layers {
     _MACRO
 };
 
+#define LAYOUT_wrapper(...) LAYOUT(__VA_ARGS__)
+#define LAYOUT_base( \
+    K01, K02, K03, K04, K05, K06,                     K07, K08, K09, K10, K11, K12, \
+    K13, K14, K15, K16, K17, K18,                     K19, K20, K21, K22, K23, K24, \
+    K25, K26, K27, K28, K29, K30, K31, K32, K33, K34, K35, K36, K37, K38, K39, K40, \
+                   K41, K42, K43, K44, K45, K46, K47, K48, K49, K50 \
+    ) \
+    LAYOUT_wrapper( \
+        K01,     K02,        K03,         K04,          K05,         K06,                                            K07,     K08,         K09,         K10,        K11,       K12, \
+        K13, LSFT_T(K14), LALT_T(K15), LCTL_T(K16), LGUI_T(K17),     K18,                                            K19, RGUI_T(K20), RCTL_T(K21), RALT_T(K22), RSFT_T(K23),  K24, \
+        K25, LGUI_T(K26), LCTL_T(K27), LALT_T(K28), LSFT_T(K29),     K30,      K31,     K32,      K33,     K34,      K35, RSFT_T(K36), RALT_T(K37), RCTL_T(K38), RGUI_T(K39),  K40, \
+                                          K41,          K42,         K43,      K44,     K45,      K46,     K47,      K48,     K49,         K50 \
+    )
+
+#define LAYOUT_base_wrapper(...) LAYOUT_base(__VA_ARGS__)
+
+#define _________________QWERTY_L1_________________        KC_Q,    KC_W,    KC_E,    KC_R,    KC_T
+#define _________________QWERTY_L2_________________        KC_A,    KC_S,    KC_D,    KC_F,    KC_G
+#define _________________QWERTY_L3_________________        KC_Z,    KC_X,    KC_C,    KC_V,    KC_B
+
+#define _________________QWERTY_R1_________________        KC_Y,    KC_U,    KC_I,    KC_O,    KC_P
+#define _________________QWERTY_R2_________________        KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN
+#define _________________QWERTY_R3_________________        KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLASH
+
 // Homerow mods
 #define MTGUI_F MT(MOD_LGUI, KC_F)
 #define MTCTL_D MT(MOD_LCTL, KC_D)
@@ -52,10 +76,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                        |      | Macro|LShift| Lower| Raise|  | Lower| Raise|LShift| Macro|      |
  *                        `----------------------------------'  `----------------------------------'
  */
-    [_QWERTY] = LAYOUT(
-      LT(_RAISE, KC_ESC),       KC_Q,   KC_W,   KC_E,   KC_R,   KC_T,                                         KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_PIPE,
-      MT(MOD_LCTL, KC_TAB), MTSFT_A, MTALT_S, MTCTL_D, MTGUI_F,  KC_G,                                         KC_H, MTGUI_J, MTCTL_K, MTALT_L, MTSFT_SCLN, KC_QUOT,
-      KC_LSFT,              MTGUI_Z, MTCTL_X, MTALT_C,   KC_V,   KC_B,   KC_LSFT,   KC_LSFT, KC_LSFT, KC_LSFT, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_MINS,
+    [_QWERTY] = LAYOUT_base_wrapper(
+      LT(_RAISE, KC_ESC), _________________QWERTY_L1_________________,                                         _________________QWERTY_R1_________________, KC_PIPE,
+    MT(MOD_LCTL, KC_TAB), _________________QWERTY_L2_________________,                                         _________________QWERTY_R2_________________, KC_QUOT,
+      KC_LSFT,            _________________QWERTY_L3_________________,  KC_LSFT,   KC_LSFT, KC_LSFT, KC_LSFT,  _________________QWERTY_R3_________________, KC_MINS,
               KC_LGUI, LT(_MACRO, KC_DEL), MT(MOD_LSFT, KC_ENT), LT(_LOWER, KC_SPC), LT(_RAISE, KC_ESC), LT(_LOWER, KC_ENT), LT(_RAISE, KC_SPC), MT(MOD_RSFT, KC_BSPC), LT(_MACRO, KC_TAB), KC_RALT
     ),
 /*
@@ -72,7 +96,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                        |      |      |      |      |      |  |      |      |      |      |      |
  *                        `----------------------------------'  `----------------------------------'
  */
-    [_LOWER] = LAYOUT(
+    [_LOWER] = LAYOUT_base_wrapper(
       _______, KC_EXLM, KC_AT,   KC_LCBR, KC_RCBR, KC_PIPE,                                     _______, _______, _______, _______, _______, KC_BSLS,
       _______, KC_HASH, KC_DLR,  KC_LPRN, KC_RPRN, KC_GRV,                                      KC_PLUS, KC_MINS, KC_SLSH, KC_ASTR, KC_PERC, KC_QUOT,
       _______, KC_PERC, KC_CIRC, KC_LBRC, KC_RBRC, KC_TILD, _______, _______, _______, _______, KC_AMPR, KC_EQL,  KC_COMM, KC_DOT,  KC_SLSH, KC_MINS,
@@ -92,7 +116,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                        |      |      |      |      |      |  |      |      |      |      |      |
  *                        `----------------------------------'  `----------------------------------'
  */
-    [_RAISE] = LAYOUT(
+    [_RAISE] = LAYOUT_base_wrapper(
       _______, KC_1, 	  KC_2,    KC_3,    KC_4,    KC_5,                                        KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,
       _______,  KC_6,    KC_7,    KC_8,    KC_9,    KC_0,                                       KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______,  KC_F12,
       _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   _______, _______, _______, _______, KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R, _______, _______,
@@ -166,13 +190,8 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 
 bool get_tapping_force_hold(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
-    case MTGUI_J:
-    case MTCTL_K:
-    case MTALT_L:
-    case MT(MOD_RSFT, KC_BSPC):
-      return false;
     default:
-      return true;
+      return false;
   }
 }
 
