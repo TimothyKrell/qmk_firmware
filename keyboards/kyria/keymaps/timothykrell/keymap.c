@@ -176,6 +176,19 @@ bool get_tapping_force_hold(uint16_t keycode, keyrecord_t *record) {
   }
 }
 
+bool get_ignore_mod_tap_interrupt(uint16_t keycode, keyrecord_t *record) {
+  switch (keycode) {
+    // These cause too much problem with shift activTing on fast typing 
+    // under normal circumstances
+    /* case MTSFT_A: */
+    /*   return false; */
+    /* case MTSFT_SCLN: */
+    /*   return false; */
+    default:
+      return true;
+  }
+}
+
 #ifdef OLED_DRIVER_ENABLE
 oled_rotation_t oled_init_user(oled_rotation_t rotation) {
 	return OLED_ROTATION_180;
