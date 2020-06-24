@@ -17,6 +17,7 @@
 
 enum layers {
     _QWERTY = 0,
+    _GAMING,
     _LOWER,
     _RAISE,
     _ADJUST,
@@ -42,6 +43,9 @@ enum layers {
 #define _________________QWERTY_L1_________________        KC_Q,    KC_W,    KC_E,    KC_R,    KC_T
 #define _________________QWERTY_L2_________________        KC_A,    KC_S,    KC_D,    KC_F,    KC_G
 #define _________________QWERTY_L3_________________        KC_Z,    KC_X,    KC_C,    KC_V,    KC_B
+
+#define _________________QWERTY_LG1________________        KC_T,    KC_Q,    KC_W,    KC_E,    KC_R
+#define _________________QWERTY_LG2________________        KC_G,    KC_A,    KC_S,    KC_D,    KC_F
 
 #define _________________QWERTY_R1_________________        KC_Y,    KC_U,    KC_I,    KC_O,    KC_P
 #define _________________QWERTY_R2_________________        KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN
@@ -82,6 +86,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_LSFT,            _________________QWERTY_L3_________________,  KC_LSFT,   KC_LSFT, KC_LSFT, KC_LSFT,  _________________QWERTY_R3_________________, KC_MINS,
               KC_LGUI, LT(_MACRO, KC_DEL), MT(MOD_LSFT, KC_ENT), LT(_LOWER, KC_SPC), LT(_RAISE, KC_ESC), LT(_LOWER, KC_ENT), LT(_RAISE, KC_SPC), MT(MOD_RSFT, KC_BSPC), LT(_MACRO, KC_TAB), KC_RALT
     ),
+
+    [_GAMING] = LAYOUT_wrapper(
+      LT(_RAISE, KC_ESC), _________________QWERTY_LG1________________,                                         _________________QWERTY_R1_________________, KC_PIPE,
+    MT(MOD_LCTL, KC_TAB), _________________QWERTY_LG2________________,                                         _________________QWERTY_R2_________________, KC_QUOT,
+      KC_LSFT,            _________________QWERTY_L3_________________,  KC_LSFT,   KC_LSFT, KC_LSFT, KC_LSFT,  _________________QWERTY_R3_________________, KC_MINS,
+              DF(_QWERTY), LT(_MACRO, KC_DEL), MT(MOD_LSFT, KC_ENT), LT(_LOWER, KC_SPC), LT(_RAISE, KC_ESC), LT(_LOWER, KC_ENT), LT(_RAISE, KC_SPC), MT(MOD_RSFT, KC_BSPC), LT(_MACRO, KC_TAB), KC_RALT
+    ),
 /*
  * Lower Layer: Symbols
  *
@@ -96,7 +107,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                        |      |      |      |      |      |  |      |      |      |      |      |
  *                        `----------------------------------'  `----------------------------------'
  */
-    [_LOWER] = LAYOUT_base_wrapper(
+    [_LOWER] = LAYOUT(
       _______, KC_EXLM, KC_AT,   KC_LCBR, KC_RCBR, KC_PIPE,                                     _______, _______, _______, _______, _______, KC_BSLS,
       _______, KC_HASH, KC_DLR,  KC_LPRN, KC_RPRN, KC_GRV,                                      KC_PLUS, KC_MINS, KC_SLSH, KC_ASTR, KC_PERC, KC_QUOT,
       _______, KC_PERC, KC_CIRC, KC_LBRC, KC_RBRC, KC_TILD, _______, _______, _______, _______, KC_AMPR, KC_EQL,  KC_COMM, KC_DOT,  KC_SLSH, KC_MINS,
@@ -157,8 +168,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                        `----------------------------------'  `----------------------------------'
  */
     [_MACRO] = LAYOUT(
-      _______, _______, _______, _______, _______, _______,                                     _______, _______, _______, _______, _______, _______,
-      _______, _______, KC_MPRV, KC_MPLY, KC_MNXT, KC_VOLU,                                     _______, _______, _______, _______, _______, _______,
+    DF(_QWERTY), _______, _______, _______, _______, _______,                                     _______, _______, _______, _______, _______, _______,
+    DF(_GAMING), _______, KC_MPRV, KC_MPLY, KC_MNXT, KC_VOLU,                                     _______, _______, _______, _______, _______, _______,
       _______, _______, _______, _______, KC_MUTE, KC_VOLD, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
                                  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
     ),
@@ -257,7 +268,10 @@ static void render_status(void) {
             oled_write_P(PSTR("Adjust\n"), false);
             break;
         case _MACRO:
-            oled_write_P(PSTR("Adjust\n"), false);
+            oled_write_P(PSTR("Macro\n"), false);
+            break;
+        case _GAMING:
+            oled_write_P(PSTR("Gaming\n"), false);
             break;
         default:
             oled_write_P(PSTR("Undefined\n"), false);
