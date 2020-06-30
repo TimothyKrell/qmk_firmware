@@ -84,7 +84,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       LT(_RAISE, KC_ESC), _________________QWERTY_L1_________________,                                         _________________QWERTY_R1_________________, KC_PIPE,
     MT(MOD_LCTL, KC_TAB), _________________QWERTY_L2_________________,                                         _________________QWERTY_R2_________________, KC_QUOT,
       KC_LSFT,            _________________QWERTY_L3_________________,  KC_LSFT,   KC_LSFT, KC_LSFT, KC_LSFT,  _________________QWERTY_R3_________________, KC_MINS,
-              KC_LGUI, LT(_MACRO, KC_DEL), MT(MOD_LSFT, KC_ENT), LT(_LOWER, KC_SPC), LT(_RAISE, KC_ESC), LT(_LOWER, KC_ENT), LT(_RAISE, KC_SPC), MT(MOD_RSFT, KC_BSPC), LT(_MACRO, KC_TAB), KC_RALT
+              KC_LGUI, LT(_MACRO, KC_DEL), LT(_RAISE, KC_ENT), LT(_LOWER, KC_SPC), MT(MOD_LSFT, KC_ESC), MT(MOD_RSFT, KC_ENT), LT(_RAISE, KC_SPC), LT(_LOWER, KC_BSPC), LT(_MACRO, KC_TAB), KC_RALT
     ),
 
     [_GAMING] = LAYOUT_wrapper(
