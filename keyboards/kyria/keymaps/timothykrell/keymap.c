@@ -83,14 +83,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_QWERTY] = LAYOUT_base_wrapper(
       LT(_RAISE, KC_ESC), _________________QWERTY_L1_________________,                                         _________________QWERTY_R1_________________, KC_PIPE,
     MT(MOD_LCTL, KC_TAB), _________________QWERTY_L2_________________,                                         _________________QWERTY_R2_________________, KC_QUOT,
-      KC_LSFT,            _________________QWERTY_L3_________________,  KC_LSFT,   KC_LSFT, KC_LSFT, KC_LSFT,  _________________QWERTY_R3_________________, KC_MINS,
+      KC_LSFT,            _________________QWERTY_L3_________________,  KC_SPC,   KC_LSFT, KC_LSFT, KC_LSFT,  _________________QWERTY_R3_________________, KC_MINS,
               KC_LGUI, LT(_MACRO, KC_DEL), LT(_RAISE, KC_ENT), LT(_LOWER, KC_SPC), MT(MOD_LSFT, KC_ESC), MT(MOD_RSFT, KC_ENT), LT(_RAISE, KC_SPC), LT(_LOWER, KC_BSPC), LT(_MACRO, KC_TAB), KC_RALT
     ),
 
     [_GAMING] = LAYOUT_wrapper(
       LT(_RAISE, KC_ESC), _________________QWERTY_LG1________________,                                         _________________QWERTY_R1_________________, KC_PIPE,
     MT(MOD_LCTL, KC_TAB), _________________QWERTY_LG2________________,                                         _________________QWERTY_R2_________________, KC_QUOT,
-      KC_LSFT,            _________________QWERTY_L3_________________,  KC_LSFT,   KC_LSFT, KC_LSFT, KC_LSFT,  _________________QWERTY_R3_________________, KC_MINS,
+      KC_LSFT,            _________________QWERTY_L3_________________,  KC_SPC,   KC_LSFT, KC_LSFT, KC_LSFT,  _________________QWERTY_R3_________________, KC_MINS,
               DF(_QWERTY), LT(_MACRO, KC_DEL), MT(MOD_LSFT, KC_ENT), LT(_LOWER, KC_SPC), LT(_RAISE, KC_ESC), LT(_LOWER, KC_ENT), LT(_RAISE, KC_SPC), MT(MOD_RSFT, KC_BSPC), LT(_MACRO, KC_TAB), KC_RALT
     ),
 /*
@@ -201,6 +201,8 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 
 bool get_tapping_force_hold(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
+    case LT(_LOWER, KC_SPC):
+      return true;
     default:
       return false;
   }
