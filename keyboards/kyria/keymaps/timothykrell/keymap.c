@@ -216,6 +216,9 @@ bool get_ignore_mod_tap_interrupt(uint16_t keycode, keyrecord_t *record) {
     /*   return false; */
     /* case MTSFT_SCLN: */
     /*   return false; */
+    case MT(MOD_LSFT, KC_ESC):
+    case MT(MOD_RSFT, KC_ENT):
+      return false;
     default:
       return true;
   }
