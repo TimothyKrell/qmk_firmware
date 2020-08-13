@@ -18,8 +18,10 @@
 enum layers {
     _QWERTY = 0,
     _GAMING,
+    _GFLIP,
     _LOWER,
     _RAISE,
+    _GRAISE,
     _ADJUST,
     _MACRO
 };
@@ -88,10 +90,24 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 
     [_GAMING] = LAYOUT_wrapper(
-      LT(_RAISE, KC_ESC), _________________QWERTY_LG1________________,                                         _________________QWERTY_R1_________________, KC_PIPE,
-    MT(MOD_LCTL, KC_TAB), _________________QWERTY_LG2________________,                                         _________________QWERTY_R2_________________, KC_QUOT,
-      KC_LSFT,            _________________QWERTY_L3_________________,  KC_SPC,   KC_LSFT, KC_LSFT, KC_LSFT,  _________________QWERTY_R3_________________, KC_MINS,
-              DF(_QWERTY), LT(_MACRO, KC_DEL), MT(MOD_LSFT, KC_ENT), LT(_LOWER, KC_SPC), LT(_RAISE, KC_ESC), LT(_LOWER, KC_ENT), LT(_RAISE, KC_SPC), MT(MOD_RSFT, KC_BSPC), LT(_MACRO, KC_TAB), KC_RALT
+      KC_ESC,             _________________QWERTY_LG1________________,                                         _________________QWERTY_R1_________________, KC_PIPE,
+    MOD_LCTL,             _________________QWERTY_LG2________________,                                         _________________QWERTY_R2_________________, KC_QUOT,
+      KC_LSFT,            _________________QWERTY_L3_________________, LM(_GRAISE, KC_LSFT), KC_ENT, KC_LSFT, KC_LSFT,  _________________QWERTY_R3_________________, KC_MINS,
+              DF(_QWERTY), MO(_GFLIP),  MO(_GRAISE),                   KC_SPC,   KC_TAB, LT(_LOWER, KC_ENT), LT(_RAISE, KC_SPC), MT(MOD_RSFT, KC_BSPC), LT(_MACRO, KC_TAB), KC_RALT
+    ),
+
+    [_GRAISE] = LAYOUT_base_wrapper(
+      KC_TAB, KC_F1, 	  KC_1,    KC_2,    KC_3,    KC_F4,                                        KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,
+      _______,  KC_F2,    KC_4,    KC_5,    KC_6,    KC_0,                                       KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______,  KC_F12,
+      _______, KC_F3,    KC_7,    KC_8,    KC_9,    KC_F5,   _______, _______, _______, _______, KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R, _______, _______,
+                                 _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
+    ),
+
+    [_GFLIP] = LAYOUT(
+      _______,    KC_P,   KC_O,   KC_I,   KC_U,  KC_Y,                                     _______, _______, _______, _______, _______, _______,
+      _______, KC_SCLN,   KC_L,   KC_K,   KC_J,  KC_H,                                     _______, _______, _______, _______, _______, _______,
+      _______, KC_SLASH, KC_DOT, KC_COMM, KC_M,  KC_N, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+                                 _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
     ),
 /*
  * Lower Layer: Symbols
@@ -277,6 +293,12 @@ static void render_status(void) {
             break;
         case _GAMING:
             oled_write_P(PSTR("Gaming\n"), false);
+            break;
+        case _GRAISE:
+            oled_write_P(PSTR("G-Raise\n"), false);
+            break;
+        case _GFLIP:
+            oled_write_P(PSTR("G-Flip\n"), false);
             break;
         default:
             oled_write_P(PSTR("Undefined\n"), false);
