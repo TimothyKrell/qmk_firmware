@@ -18,6 +18,7 @@
 enum layers {
     _QWERTY = 0,
     _GAMING,
+    _GAMING_NORM,
     _GFLIP,
     _LOWER,
     _RAISE,
@@ -42,12 +43,29 @@ enum layers {
 
 #define LAYOUT_base_wrapper(...) LAYOUT_base(__VA_ARGS__)
 
+#define LAYOUT_base2( \
+    K01, K02, K03, K04, K05, K06,                     K07, K08, K09, K10, K11, K12, \
+    K13, K14, K15, K16, K17, K18,                     K19, K20, K21, K22, K23, K24, \
+    K25, K26, K27, K28, K29, K30, K31, K32, K33, K34, K35, K36, K37, K38, K39, K40, \
+                   K41, K42, K43, K44, K45, K46, K47, K48, K49, K50 \
+    ) \
+    LAYOUT_wrapper( \
+        K01,     K02,        K03,         K04,          K05,         K06,                                            K07,     K08,         K09,         K10,        K11,       K12, \
+        K13,     K14,        K15,         K16,          K17,         K18,                                            K19,     K20,         K21,         K22,        K23,       K24, \
+        K25,     K26,        K27,         K28,          K29,         K30,      K31,     K32,      K33,     K34,      K35,     K36,         K37,         K38,        K39,       K40, \
+                                          K41,          K42,         K43,      K44,     K45,      K46,     K47,      K48,     K49,         K50 \
+    )
+
+#define LAYOUT_base2_wrapper(...) LAYOUT_base2(__VA_ARGS__)
+
 #define _________________QWERTY_L1_________________        KC_Q,    KC_W,    KC_E,    KC_R,    KC_T
 #define _________________QWERTY_L2_________________        KC_A,    KC_S,    KC_D,    KC_F,    KC_G
 #define _________________QWERTY_L3_________________        KC_Z,    KC_X,    KC_C,    KC_V,    KC_B
 
 #define _________________QWERTY_LG1________________        KC_T,    KC_Q,    KC_W,    KC_E,    KC_R
 #define _________________QWERTY_LG2________________        KC_G,    KC_A,    KC_S,    KC_D,    KC_F
+#define _________________QWERTY_LG3________________        KC_Q,    KC_W,    KC_E,    KC_R,    KC_T
+#define _________________QWERTY_LG4________________        KC_A,    KC_S,    KC_D,    KC_F,    KC_G
 
 #define _________________QWERTY_R1_________________        KC_Y,    KC_U,    KC_I,    KC_O,    KC_P
 #define _________________QWERTY_R2_________________        KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN
@@ -89,17 +107,32 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
               KC_LGUI, LT(_MACRO, KC_DEL), LT(_RAISE, KC_ENT), LT(_LOWER, KC_SPC), MT(MOD_LSFT, KC_ESC), MT(MOD_RSFT, KC_ENT), LT(_RAISE, KC_SPC), LT(_LOWER, KC_BSPC), LT(_MACRO, KC_TAB), KC_RALT
     ),
 
-    [_GAMING] = LAYOUT_wrapper(
-      KC_ESC,             _________________QWERTY_LG1________________,                                         _________________QWERTY_R1_________________, KC_PIPE,
-    MOD_LCTL,             _________________QWERTY_LG2________________,                                         _________________QWERTY_R2_________________, KC_QUOT,
+    [_GAMING_NORM] = LAYOUT_base2_wrapper(
+      KC_ESC,             _________________QWERTY_LG3________________,                                         _________________QWERTY_R1_________________, KC_PIPE,
+    MOD_LCTL,             _________________QWERTY_LG4________________,                                          _________________QWERTY_R2_________________, KC_QUOT,
       KC_LSFT,            _________________QWERTY_L3_________________, LM(_GRAISE, KC_LSFT), KC_ENT, KC_LSFT, KC_LSFT,  _________________QWERTY_R3_________________, KC_MINS,
               DF(_QWERTY), MO(_GFLIP),  MO(_GRAISE),                   KC_SPC,   KC_TAB, LT(_LOWER, KC_ENT), LT(_RAISE, KC_SPC), MT(MOD_RSFT, KC_BSPC), LT(_MACRO, KC_TAB), KC_RALT
     ),
 
+
+    [_GAMING] = LAYOUT_base2_wrapper(
+      KC_T,             KC_ESC,    KC_Q,    KC_W,    KC_E,    KC_R,                                         _________________QWERTY_R1_________________, KC_PIPE,
+      KC_G,           MOD_LCTL,    KC_A,    KC_S,    KC_D,    KC_F,                                         _________________QWERTY_R2_________________, KC_QUOT,
+      KC_B,            KC_LSFT,    KC_Z,    KC_X,    KC_C,    KC_V, LM(_GRAISE, KC_LSFT), KC_ENT, KC_LSFT, KC_LSFT,  _________________QWERTY_R3_________________, KC_MINS,
+              DF(_QWERTY), MO(_GFLIP),  MO(_GRAISE),                   KC_SPC,   KC_TAB, LT(_LOWER, KC_ENT), LT(_RAISE, KC_SPC), MT(MOD_RSFT, KC_BSPC), LT(_MACRO, KC_TAB), KC_RALT
+    ),
+
+    /* [_GAMING_NORM] = LAYOUT_wrapper( */
+    /*   KC_ESC,             _________________QWERTY_L1________________,                                         _________________QWERTY_R1_________________, KC_PIPE, */
+    /* MOD_LCTL,             _________________QWERTY_L2________________,                                         _________________QWERTY_R2_________________, KC_QUOT, */
+    /*   KC_LSFT,            _________________QWERTY_L3_________________, LM(_GRAISE, KC_LSFT), KC_ENT, KC_LSFT, KC_LSFT,  _________________QWERTY_R3_________________, KC_MINS, */
+    /*           DF(_QWERTY), MO(_GFLIP),  MO(_GRAISE),                   KC_SPC,   KC_TAB, LT(_LOWER, KC_ENT), LT(_RAISE, KC_SPC), MT(MOD_RSFT, KC_BSPC), LT(_MACRO, KC_TAB), KC_RALT */
+    /* ), */
+
     [_GRAISE] = LAYOUT_base_wrapper(
-      KC_TAB, KC_F1, 	  KC_1,    KC_2,    KC_3,    KC_F4,                                        KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,
-      _______,  KC_F2,    KC_4,    KC_5,    KC_6,    KC_0,                                       KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______,  KC_F12,
-      _______, KC_F3,    KC_7,    KC_8,    KC_9,    KC_F5,   _______, _______, _______, _______, KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R, _______, _______,
+      KC_TAB,            KC_F1, 	  KC_1,    KC_2,    KC_3,    KC_F4,                                        KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,
+      DF(_GAMING_NORM),  KC_F2,    KC_4,    KC_5,    KC_6,    KC_0,                                       KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______,  KC_F12,
+      DF(_GAMING),       KC_F3,    KC_7,    KC_8,    KC_9,    KC_F5,   _______, _______, _______, _______, KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R, _______, _______,
                                  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
     ),
 
@@ -145,8 +178,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
     [_RAISE] = LAYOUT_base_wrapper(
       _______, KC_1, 	  KC_2,    KC_3,    KC_4,    KC_5,                                        KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,
-      _______,  KC_6,    KC_7,    KC_8,    KC_9,    KC_0,                                       KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______,  KC_F12,
-      _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   _______, _______, _______, _______, KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R, _______, _______,
+      _______,  KC_6,    KC_7,    KC_8,    KC_9,    KC_0,                                       KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, KC_PGUP,  KC_F12,
+      _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   _______, _______, _______, _______, _______, KC_HOME, KC_END,  _______, KC_PGDN, _______,
                                  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
     ),
 /*
@@ -184,9 +217,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                        `----------------------------------'  `----------------------------------'
  */
     [_MACRO] = LAYOUT(
-    DF(_QWERTY), _______, _______, _______, _______, _______,                                     _______, _______, _______, _______, _______, _______,
-    DF(_GAMING), _______, KC_MPRV, KC_MPLY, KC_MNXT, KC_VOLU,                                     _______, _______, _______, _______, _______, _______,
-      _______, _______, _______, _______, KC_MUTE, KC_VOLD, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+    DF(_QWERTY), _______, _______, _______, DF(_GAMING_NORM), DF(_GAMING),                      _______, _______, _______, _______, _______, _______,
+      _______, KC_MPRV, KC_MPLY, KC_MNXT, KC_VOLU, _______,                                     _______, _______, _______, _______, _______, _______,
+      _______, _______, _______, KC_MUTE, KC_VOLD, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
                                  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
     ),
 // /*
@@ -293,6 +326,9 @@ static void render_status(void) {
             break;
         case _GAMING:
             oled_write_P(PSTR("Gaming\n"), false);
+            break;
+        case _GAMING_NORM:
+            oled_write_P(PSTR("Gaming Norm\n"), false);
             break;
         case _GRAISE:
             oled_write_P(PSTR("G-Raise\n"), false);
