@@ -109,7 +109,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [_GAMING_NORM] = LAYOUT_base2_wrapper(
       KC_ESC,             _________________QWERTY_LG3________________,                                         _________________QWERTY_R1_________________, KC_PIPE,
-    MOD_LCTL,             _________________QWERTY_LG4________________,                                          _________________QWERTY_R2_________________, KC_QUOT,
+      KC_LCTL,             _________________QWERTY_LG4________________,                                          _________________QWERTY_R2_________________, KC_QUOT,
       KC_LSFT,            _________________QWERTY_L3_________________, LM(_GRAISE, KC_LSFT), KC_ENT, KC_LSFT, KC_LSFT,  _________________QWERTY_R3_________________, KC_MINS,
               DF(_QWERTY), MO(_GFLIP),  MO(_GRAISE),                   KC_SPC,   KC_TAB, LT(_LOWER, KC_ENT), LT(_RAISE, KC_SPC), MT(MOD_RSFT, KC_BSPC), LT(_MACRO, KC_TAB), KC_RALT
     ),
@@ -117,7 +117,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [_GAMING] = LAYOUT_base2_wrapper(
       KC_T,             KC_ESC,    KC_Q,    KC_W,    KC_E,    KC_R,                                         _________________QWERTY_R1_________________, KC_PIPE,
-      KC_G,           MOD_LCTL,    KC_A,    KC_S,    KC_D,    KC_F,                                         _________________QWERTY_R2_________________, KC_QUOT,
+      KC_G,            KC_LCTL,    KC_A,    KC_S,    KC_D,    KC_F,                                         _________________QWERTY_R2_________________, KC_QUOT,
       KC_B,            KC_LSFT,    KC_Z,    KC_X,    KC_C,    KC_V, LM(_GRAISE, KC_LSFT), KC_ENT, KC_LSFT, KC_LSFT,  _________________QWERTY_R3_________________, KC_MINS,
               DF(_QWERTY), MO(_GFLIP),  MO(_GRAISE),                   KC_SPC,   KC_TAB, LT(_LOWER, KC_ENT), LT(_RAISE, KC_SPC), MT(MOD_RSFT, KC_BSPC), LT(_MACRO, KC_TAB), KC_RALT
     ),
