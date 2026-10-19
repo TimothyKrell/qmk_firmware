@@ -3,7 +3,7 @@
 //
 // Ported from the 2021 keymap in TimothyKrell/qmk_firmware (keyboards/kyria/keymaps/timothykrell).
 // Every keycode below is what the old LAYOUT_base/LAYOUT_base2 wrapper macros expanded to, so
-// the compiled keymap is identical to the old firmware. Run `tools/verify.py` to prove it.
+// the compiled keymap is identical to the old firmware. Run `tools/verify.sh` to prove it.
 
 #include QMK_KEYBOARD_H
 
@@ -216,21 +216,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 };
 
-#ifdef ENCODER_MAP_ENABLE
-// Left knob: volume. Right knob: page up/down. Same on every layer.
-const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
-    [_QWERTY]      = { ENCODER_CCW_CW(KC_VOLD, KC_VOLU), ENCODER_CCW_CW(KC_PGUP, KC_PGDN) },
-    [_GAMING]      = { ENCODER_CCW_CW(_______, _______), ENCODER_CCW_CW(_______, _______) },
-    [_GAMING_NORM] = { ENCODER_CCW_CW(_______, _______), ENCODER_CCW_CW(_______, _______) },
-    [_GFLIP]       = { ENCODER_CCW_CW(_______, _______), ENCODER_CCW_CW(_______, _______) },
-    [_LOWER]       = { ENCODER_CCW_CW(_______, _______), ENCODER_CCW_CW(_______, _______) },
-    [_RAISE]       = { ENCODER_CCW_CW(_______, _______), ENCODER_CCW_CW(_______, _______) },
-    [_GRAISE]      = { ENCODER_CCW_CW(_______, _______), ENCODER_CCW_CW(_______, _______) },
-    [_ADJUST]      = { ENCODER_CCW_CW(_______, _______), ENCODER_CCW_CW(_______, _______) },
-    [_MACRO]       = { ENCODER_CCW_CW(_______, _______), ENCODER_CCW_CW(_______, _______) },
-};
-#endif
 // clang-format on
+
+// Tap both Shift thumbs together for Caps Word: the next word is typed in capitals
+// (MAX_RETRIES), then it turns itself off.
+const uint16_t PROGMEM caps_word_combo[] = {SFT_ESC, SFT_ENT, COMBO_END};
+combo_t key_combos[] = {
+    COMBO(caps_word_combo, CW_TOGG),
+};
 
 layer_state_t layer_state_set_user(layer_state_t state) {
     return update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
@@ -257,6 +250,34 @@ uint16_t get_quick_tap_term(uint16_t keycode, keyrecord_t *record) {
         default:
             return QUICK_TAP_TERM;
     }
+}
+
+static bool is_typing_key(uint16_t keycode) {
+    switch (get_tap_keycode(keycode)) {
+        case KC_A ... KC_0: // letters and digits
+        case KC_DOT:
+        case KC_COMM:
+        case KC_SCLN:
+        case KC_SLSH:
+            return true;
+        default:
+            return false;
+    }
+}
+
+// Flow Tap: a letter/number mod-tap pressed within FLOW_TAP_TERM of another letter/number is
+// always a tap, so fast typing never fires a stray mod. After a short pause, mods work as
+// before, including one-handed shortcuts like holding Z (Cmd) and tapping C. Thumb keys are
+// left out so Space/Enter layer keys can still be held straight after typing. Once Cmd, Ctrl
+// or Alt is held it is also skipped, so Cmd+C then Cmd+V in quick succession still works.
+uint16_t get_flow_tap_term(uint16_t keycode, keyrecord_t *record, uint16_t prev_keycode) {
+    if (get_mods() & (MOD_MASK_CG | MOD_MASK_ALT)) {
+        return 0;
+    }
+    if (is_typing_key(keycode) && is_typing_key(prev_keycode)) {
+        return FLOW_TAP_TERM;
+    }
+    return 0;
 }
 
 #ifdef OLED_ENABLE
@@ -295,7 +316,8 @@ static void render_status(void) {
     oled_write_P(PSTR("Tim's Keyboard\n\n"), false);
 
     oled_write_P(PSTR("Layer: "), false);
-    switch (get_highest_layer(layer_state)) {
+    // Include the default layer so a gaming default shows as "Gaming" rather than "Default".
+    switch (get_highest_layer(layer_state | default_layer_state)) {
         case _QWERTY:
             oled_write_P(PSTR("Default\n"), false);
             break;

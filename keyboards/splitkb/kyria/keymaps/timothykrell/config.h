@@ -12,6 +12,11 @@
 #define HOLD_ON_OTHER_KEY_PRESS_PER_KEY
 // Replaces the old TAPPING_FORCE_HOLD_PER_KEY; see get_quick_tap_term().
 #define QUICK_TAP_TERM_PER_KEY
+// While typing quickly, letter/number mod-taps always type; see get_flow_tap_term().
+#define FLOW_TAP_TERM 150
+
+// Holding both Shifts also turns on Caps Word (the thumb combo in keymap.c is the quick way).
+#define BOTH_SHIFTS_TURNS_ON_CAPS_WORD
 
 #ifdef RGBLIGHT_ENABLE
 // RGBLIGHT_ANIMATIONS (all effects) was removed upstream; enable them individually.
@@ -29,3 +34,7 @@
 #    define RGBLIGHT_SAT_STEP 8
 #    define RGBLIGHT_VAL_STEP 8
 #endif
+
+// Space savers: no one-shot keys in this keymap, and 9 layers fit in 16 bits.
+#define NO_ACTION_ONESHOT
+#define LAYER_STATE_16BIT

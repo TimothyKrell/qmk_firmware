@@ -18,7 +18,13 @@ fi
 fix_owner() { docker run --rm -v "$ROOT/dumps:/d" "$IMAGE" chown -R "$(id -u):$(id -g)" /d; }
 fix_owner
 dump="$ROOT/dumps/flash-$stamp.bin"
+if [ ! -s "$dump" ]; then
+    rm -f "$ROOT/dumps/"*"-$stamp.bin"
+    echo "The bootloader refused the read (its read protection is on). Nothing was saved." >&2
+    exit 1
+fi
 echo "Saved $dump ($(stat -c %s "$dump") bytes)"
-python3 "$ROOT/tools/kmtool.py" json "$dump:old" > "$ROOT/reference/on-board-keymap.json"
+json=$(python3 "$ROOT/tools/kmtool.py" json "$dump:old")
+printf '%s\n' "$json" > "$ROOT/reference/on-board-keymap.json"
 python3 "$ROOT/tools/kmtool.py" show "$ROOT/reference/on-board-keymap.json" || true
 python3 "$ROOT/tools/kmtool.py" diff "$ROOT/reference/github-2021-keymap.json" "$ROOT/reference/on-board-keymap.json"

@@ -56,6 +56,10 @@ The port was checked as follows:
 
 ### Checking the firmware that is on the board right now
 
+It turned out that this board's bootloader has read protection on, so the flash and EEPROM can't
+be read back (the dump attempt on 2026-10-19 was refused). The GitHub version is therefore the
+reference. The script is kept in case a future controller allows reads.
+
 `tools/dump-flash.sh` is **read-only**. It waits for the bootloader and copies the flash and EEPROM to
 `dumps/`. It then restarts the existing firmware, decodes the dumped keymap into
 `reference/on-board-keymap.json`, and diffs it against the GitHub version. If there are differences,
@@ -67,7 +71,7 @@ port them into `keymap.c`. `tools/verify.sh` then compares against the on-board 
 |---|---|
 | `IGNORE_MOD_TAP_INTERRUPT_PER_KEY` (true for everything except the two shift thumbs) | `HOLD_ON_OTHER_KEY_PRESS_PER_KEY` (true only for the two shift thumbs) |
 | `TAPPING_FORCE_HOLD_PER_KEY` for Lower/Space | `QUICK_TAP_TERM_PER_KEY` returning `0` for Lower/Space |
-| `encoder_update_user()` | `ENCODER_MAP_ENABLE` + `encoder_map[]` |
+| `encoder_update_user()` | Removed: no knobs are fitted on this board |
 | `OLED_DRIVER_ENABLE`, `void oled_task_user`, `USB_LED_*` | `OLED_ENABLE`, `bool oled_task_user`, `led_t` |
 | `RGBLIGHT_ANIMATIONS` | individual `RGBLIGHT_EFFECT_*` defines |
 | `RGB_TOG`, `RGB_MOD`, `KC_MS_L`, ... | `UG_TOGG`, `UG_NEXT`, `MS_LEFT`, ... |
@@ -81,10 +85,22 @@ port them into `keymap.c`. `tools/verify.sh` then compares against the on-board 
   around `KC_TRNS` (e.g. `RCTL_T(_______)`). Holding them gives the mod; tapping does nothing.
 * Home-row mods are also active on the number row of Raise/G-Raise (e.g. hold `6` on Raise = Shift).
 
-## Possible upgrades (not enabled, they would change behaviour)
+## Changes since the 2021 firmware
 
-* [Chordal Hold](https://docs.qmk.fm/tap_hold#chordal-hold) and [Flow Tap](https://docs.qmk.fm/tap_hold#flow-tap):
-  modern home-row-mod helpers that cut down on accidental mods while typing fast.
-* A `QK_BOOT` key somewhere (e.g. on Adjust), so flashing doesn't need the reset button.
-* `get_highest_layer(layer_state | default_layer_state)` in the OLED code, so the screen shows
-  "Gaming" when a gaming layer is the default layer.
+None of these move a key, so `tools/verify.sh` still reports the keymap as identical.
+
+* **[Flow Tap](https://docs.qmk.fm/tap_hold#flow-tap):** a letter or number mod-tap pressed within
+  150 ms of another letter or number is always a tap, so fast typing can't fire a stray mod. After a
+  short pause, one-handed shortcuts work as before (hold Z for Cmd, tap C). Thumb keys are excluded,
+  and once Cmd, Ctrl or Alt is held Flow Tap steps aside, so Cmd+C then Cmd+V works at any speed.
+* **[Caps Word](https://docs.qmk.fm/features/caps_word):** tap both Shift thumbs (Esc and Enter)
+  together, or hold any left and right Shift. The next word is typed in capitals, then it turns off.
+* **OLED:** shows "Gaming" or "Gaming Norm" when a gaming layer is the default layer.
+* **Removed:** knob (encoder) support, since none are fitted, and unused QMK features (Magic keycodes,
+  Space Cadet, Grave Escape, one-shot keys) to make room on the 28 KB chip.
+
+## Deliberately not used
+
+* [Chordal Hold](https://docs.qmk.fm/tap_hold#chordal-hold): it requires opposite-hand chords for mods,
+  which would break one-handed left-hand shortcuts (pen in the right hand, Cmd+C on the left).
+* A `QK_BOOT` key: the reset button is easy enough to reach.

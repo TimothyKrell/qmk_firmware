@@ -5,5 +5,5 @@ set -euo pipefail
 source "$(dirname "$0")/common.sh"
 [ -f "$HEX" ] || "$ROOT/tools/build.sh"
 ref="$ROOT/reference/on-board-keymap.json"
-[ -f "$ref" ] || ref="$ROOT/reference/github-2021-keymap.json"
+[ -s "$ref" ] || ref="$ROOT/reference/github-2021-keymap.json"
 python3 "$ROOT/tools/kmtool.py" diff "$ref" "$HEX"
