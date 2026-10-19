@@ -133,14 +133,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
  * |        |  %   |  ^   |  {   |  }   |  ~   |      |      |  |      |      |  &   |  =   |  <   |  >   |  ?   |   _    |
  * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
- *                        |      |      |      |  ;   |  =   |  |  =   |  ;   |      |      |      |
+ *                        |      |      |      |  ;   |  =   |  |  =   |      |      |      |      |
  *                        `----------------------------------'  `----------------------------------'
  */
     [_LOWER] = LAYOUT_split_3x6_5(
       _______,          KC_EXLM,       KC_AT,         KC_LBRC,       KC_RBRC,          KC_PIPE,                                             _______, _______,         _______,        _______,         _______,         KC_BSLS,
       _______,          KC_HASH,       KC_DLR,        KC_LPRN,       KC_RPRN,          KC_GRV,                                              KC_PLUS, KC_MINS,         KC_SLSH,        KC_ASTR,         KC_COLN,         KC_DQT,
       _______,          KC_PERC,       KC_CIRC,       KC_LCBR,       KC_RCBR,          KC_TILD,     _______, _______,     _______, _______, KC_AMPR, KC_EQL,          KC_LT,          KC_GT,           KC_QUES,         KC_UNDS,
-                                                      _______,       _______,          _______,     KC_SCLN, KC_EQL,      KC_EQL,  KC_SCLN, _______, _______,         _______
+                                                      _______,       _______,          _______,     KC_SCLN, KC_EQL,      KC_EQL,  _______, _______, _______,         _______
     ),
 /*
  * Raise: numbers, F-keys, navigation (home-row mods still active)

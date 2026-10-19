@@ -87,7 +87,11 @@ port them into `keymap.c`. `tools/verify.sh` then compares against the on-board 
 
 ## Changes since the 2021 firmware
 
-None of these move a key, so `tools/verify.sh` still reports the keymap as identical.
+`tools/verify.sh` now reports exactly one difference from the original, the Lower-layer change below.
+
+* **Adjust from either order:** on Lower, the right Space/Raise thumb used to type `;`, so holding left
+  Space (Lower) then right Space (Raise) gave a semicolon instead of Adjust. That key is now
+  see-through on Lower. `;` is still on Lower's left Space thumb.
 
 * **[Flow Tap](https://docs.qmk.fm/tap_hold#flow-tap):** a letter or number mod-tap pressed within
   150 ms of another letter or number is always a tap, so fast typing can't fire a stray mod. After a
