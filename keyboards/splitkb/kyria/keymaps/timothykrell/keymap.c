@@ -1,7 +1,7 @@
 // Copyright 2026 Timothy Krell
 // SPDX-License-Identifier: GPL-2.0-or-later
 //
-// Ported from the 2021 keymap in TimothyKrell/qmk_firmware (keyboards/kyria/keymaps/timothykrell).
+// Ported from the 2021 keymap in the old QMK fork (branch legacy-2021, keyboards/kyria/keymaps/timothykrell).
 // Every keycode below is what the old LAYOUT_base/LAYOUT_base2 wrapper macros expanded to, so
 // the compiled keymap is identical to the old firmware. Run `tools/verify.sh` to prove it.
 

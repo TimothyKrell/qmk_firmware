@@ -42,10 +42,10 @@ submodule bump.
 
 ## How this was reconstructed
 
-The original keymap was in `TimothyKrell/qmk_firmware` (`keyboards/kyria/keymaps/timothykrell`, last
-commit Jan 2021). The firmware actually on the board reports itself as `8D1D:9D9D "splitKB Kyria"`.
-Those USB strings only existed in upstream QMK between 2021-07-26 and 2022-02-21, so the board was
-flashed from a later local checkout than what's on GitHub.
+The original keymap was in this repo when it was a full QMK fork (`keyboards/kyria/keymaps/timothykrell`,
+last commit Jan 2021). That fork is preserved on the `legacy-2021` branch. The firmware on the board before
+this port reported itself as `8D1D:9D9D "splitKB Kyria"`. Those USB strings only existed in upstream QMK
+between 2021-07-26 and 2022-02-21, so the board had been flashed from a later local checkout of that fork.
 
 The port was checked as follows:
 
