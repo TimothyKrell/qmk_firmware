@@ -4,7 +4,7 @@
 set -euo pipefail
 source "$(dirname "$0")/common.sh"
 "$ROOT/tools/build.sh"
-wait_for_bootloader 120
+wait_for_bootloader "${1:-120}"
 hex="/work/$(basename "$HEX")"
 if [ "$BOOTLOADER" = dfu ]; then
     usb_docker sh -c "dfu-programmer atmega32u4 erase --force && dfu-programmer atmega32u4 flash $hex && dfu-programmer atmega32u4 launch"
