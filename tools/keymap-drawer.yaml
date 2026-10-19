@@ -11,6 +11,43 @@ parse_config:
     KC_GRV: "`"
     KC_BSLS: "\\"
     "LM(6, MOD_LCTL)": {t: G-Raise, h: + Ctrl}
+    "LM(6,MOD_LCTL)": {t: G-Raise, h: + Ctrl}
+    KC_EXLM: "!"
+    KC_AT: "@"
+    KC_HASH: "#"
+    KC_DLR: "$"
+    KC_PERC: "%"
+    KC_CIRC: "^"
+    KC_AMPR: "&"
+    KC_ASTR: "*"
+    KC_LPRN: "("
+    KC_RPRN: ")"
+    KC_LBRC: "["
+    KC_RBRC: "]"
+    KC_LCBR: "{"
+    KC_RCBR: "}"
+    KC_TILD: "~"
+    KC_PLUS: "+"
+    KC_EQL: "="
+    KC_LT: "<"
+    KC_GT: ">"
+    KC_QUES: "?"
+    KC_COLN: ":"
+    KC_UNDS: "_"
+    KC_LEFT: "←"
+    KC_DOWN: "↓"
+    KC_UP: "↑"
+    KC_RGHT: "→"
+    KC_PGUP: PgUp
+    KC_PGDN: PgDn
+    KC_HOME: Home
+    KC_END: End
+    KC_MPRV: Prev
+    KC_MPLY: Play
+    KC_MNXT: Next
+    KC_VOLU: Vol+
+    KC_VOLD: Vol-
+    KC_MUTE: Mute
     KC_DQT: '"'
     KC_RALT: AltGr
     UG_TOGG: RGB Tog

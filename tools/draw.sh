@@ -17,5 +17,10 @@ json.dump(km, open(path, 'w'))
 PY
 names=$(echo $layers | sed 's/^_//; s/ _/ /g')
 uvx --from keymap-drawer keymap -c "$ROOT/tools/keymap-drawer.yaml" parse -q "$tmp/keymap.json" -l $names > "$tmp/keymap.yaml"
+# Combos aren't in c2json output; add them by key position (thumb row starts at 40).
+cat >> "$tmp/keymap.yaml" <<'YAML'
+combos:
+  - {p: [44, 45], k: Caps Word, l: [QWERTY]}
+YAML
 uvx --from keymap-drawer keymap -c "$ROOT/tools/keymap-drawer.yaml" draw "$tmp/keymap.yaml" > "$ROOT/keymap.svg"
 echo "Wrote $ROOT/keymap.svg"
