@@ -87,11 +87,13 @@ port them into `keymap.c`. `tools/verify.sh` then compares against the on-board 
 
 ## Changes since the 2021 firmware
 
-`tools/verify.sh` now reports exactly the key differences listed below (Lower, Macro and the two gaming layers).
+`tools/verify.sh` now reports exactly the key differences listed below (Lower, Adjust, Macro and the two gaming layers).
 
 * **Gaming layers:** Left Shift and Left Ctrl swapped (Shift on the home row), and Left Alt on the leftmost
   thumb in place of the "back to QWERTY" key. To leave gaming mode, hold the right Tab thumb (Macro) and press
   the R position (top row, fourth from the left).
+* **Adjust layer:** an "RGB Solid" key below RGB Tog. It turns the lights on and switches to a solid colour
+  (no animation), keeping the current hue and brightness.
 * **Macro layer:** the QWERTY and Gaming Norm default-layer keys swapped places. QWERTY is now on the R
   position, Gaming Norm on the top-left corner.
 
