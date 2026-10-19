@@ -1,0 +1,20 @@
+# Junk files
+*.bak
+*.swp
+*~
+.DS_Store
+._*
+
+# Firmware files
+*.hex
+*.bin
+*.uf2
+
+# clangd
+compile_commands.json
+.clangd/
+.cache/
+
+# Flash dumps read off the keyboard (decoded copies live in reference/)
+dumps/
+__pycache__/

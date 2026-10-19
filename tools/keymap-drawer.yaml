@@ -1,0 +1,32 @@
+parse_config:
+  trans_legend: {t: "▽", type: trans}
+  qmk_keycode_map:
+    KC_PIPE: "|"
+    KC_SCLN: ";"
+    KC_QUOT: "'"
+    KC_COMM: ","
+    KC_DOT: "."
+    KC_SLSH: "/"
+    KC_MINS: "-"
+    KC_GRV: "`"
+    KC_BSLS: "\\"
+    "LM(6, MOD_LCTL)": {t: G-Raise, h: + Ctrl}
+    KC_DQT: '"'
+    KC_RALT: AltGr
+    UG_TOGG: RGB Tog
+    UG_NEXT: RGB Mode+
+    UG_PREV: RGB Mode-
+    UG_HUEU: Hue+
+    UG_HUED: Hue-
+    UG_SATU: Sat+
+    UG_SATD: Sat-
+    UG_VALU: Bri+
+    UG_VALD: Bri-
+    MS_LEFT: "Mouse ←"
+    MS_DOWN: "Mouse ↓"
+    MS_UP: "Mouse ↑"
+    MS_RGHT: "Mouse →"
+draw_config:
+  key_h: 60
+  key_w: 64
+  dark_mode: auto
