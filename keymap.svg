@@ -438,7 +438,7 @@ path.combo { stroke: #7f7f7f; }
 </g>
 <g transform="translate(90, 135)" class="key keypos-13">
 <rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key"/>
-<text x="0" y="0" class="key tap">LCTL</text>
+<text x="0" y="0" class="key tap">LSFT</text>
 </g>
 <g transform="translate(150, 105)" class="key keypos-14">
 <rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key"/>
@@ -486,7 +486,7 @@ path.combo { stroke: #7f7f7f; }
 </g>
 <g transform="translate(90, 195)" class="key keypos-25">
 <rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key"/>
-<text x="0" y="0" class="key tap">LSFT</text>
+<text x="0" y="0" class="key tap">LCTL</text>
 </g>
 <g transform="translate(150, 165)" class="key keypos-26">
 <rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key"/>
@@ -547,9 +547,7 @@ path.combo { stroke: #7f7f7f; }
 </g>
 <g transform="translate(180, 225)" class="key keypos-40">
 <rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key"/>
-<a href="#QWERTY">
-<text x="0" y="0" class="key tap layer-activator">QWERTY</text>
-</a><text x="0" y="26" class="key hold">toggle</text>
+<text x="0" y="0" class="key tap">LALT</text>
 </g>
 <g transform="translate(240, 225)" class="key keypos-41">
 <rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key"/>
@@ -651,7 +649,7 @@ path.combo { stroke: #7f7f7f; }
 </g>
 <g transform="translate(30, 135)" class="key keypos-12">
 <rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key"/>
-<text x="0" y="0" class="key tap">LCTL</text>
+<text x="0" y="0" class="key tap">LSFT</text>
 </g>
 <g transform="translate(90, 135)" class="key keypos-13">
 <rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key"/>
@@ -699,7 +697,7 @@ path.combo { stroke: #7f7f7f; }
 </g>
 <g transform="translate(30, 195)" class="key keypos-24">
 <rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key"/>
-<text x="0" y="0" class="key tap">LSFT</text>
+<text x="0" y="0" class="key tap">LCTL</text>
 </g>
 <g transform="translate(90, 195)" class="key keypos-25">
 <rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key"/>
@@ -764,9 +762,7 @@ path.combo { stroke: #7f7f7f; }
 </g>
 <g transform="translate(180, 225)" class="key keypos-40">
 <rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key"/>
-<a href="#QWERTY">
-<text x="0" y="0" class="key tap layer-activator">QWERTY</text>
-</a><text x="0" y="26" class="key hold">toggle</text>
+<text x="0" y="0" class="key tap">LALT</text>
 </g>
 <g transform="translate(240, 225)" class="key keypos-41">
 <rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key"/>
