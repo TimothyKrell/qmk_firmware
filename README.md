@@ -87,11 +87,13 @@ port them into `keymap.c`. `tools/verify.sh` then compares against the on-board 
 
 ## Changes since the 2021 firmware
 
-`tools/verify.sh` now reports exactly the key differences listed below (Lower and the two gaming layers).
+`tools/verify.sh` now reports exactly the key differences listed below (Lower, Macro and the two gaming layers).
 
 * **Gaming layers:** Left Shift and Left Ctrl swapped (Shift on the home row), and Left Alt on the leftmost
   thumb in place of the "back to QWERTY" key. To leave gaming mode, hold the right Tab thumb (Macro) and press
-  the top-left key.
+  the R position (top row, fourth from the left).
+* **Macro layer:** the QWERTY and Gaming Norm default-layer keys swapped places. QWERTY is now on the R
+  position, Gaming Norm on the top-left corner.
 
 * **Adjust from either order:** on Lower, the right Space/Raise thumb used to type `;`, so holding left
   Space (Lower) then right Space (Raise) gave a semicolon instead of Adjust. That key is now

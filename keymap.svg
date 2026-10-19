@@ -1896,8 +1896,8 @@ path.combo { stroke: #7f7f7f; }
 <g transform="translate(0, 56)">
 <g transform="translate(30, 75)" class="key keypos-0">
 <rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key"/>
-<a href="#QWERTY">
-<text x="0" y="0" class="key tap layer-activator">QWERTY</text>
+<a href="#GAMING_NORM">
+<text x="0" y="0" class="key tap layer-activator"><tspan style="font-size: 64%">GAMING_NORM</tspan></text>
 </a><text x="0" y="26" class="key hold">toggle</text>
 </g>
 <g transform="translate(90, 75)" class="key trans keypos-1">
@@ -1914,8 +1914,8 @@ path.combo { stroke: #7f7f7f; }
 </g>
 <g transform="translate(270, 45)" class="key keypos-4">
 <rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key"/>
-<a href="#GAMING_NORM">
-<text x="0" y="0" class="key tap layer-activator"><tspan style="font-size: 64%">GAMING_NORM</tspan></text>
+<a href="#QWERTY">
+<text x="0" y="0" class="key tap layer-activator">QWERTY</text>
 </a><text x="0" y="26" class="key hold">toggle</text>
 </g>
 <g transform="translate(330, 52)" class="key keypos-5">
