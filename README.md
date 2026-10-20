@@ -102,6 +102,8 @@ port them into `keymap.c`. `tools/verify.sh` then compares against the on-board 
   (no animation), keeping the current hue and brightness.
 * **Macro layer:** the QWERTY and Gaming Norm default-layer keys swapped places. QWERTY is now on the R
   position, Gaming Norm on the top-left corner.
+* **G-Raise layer:** the bottom-left key goes back to QWERTY (was Gaming), so you can leave either gaming
+  layout without the Macro layer. Gaming is still on the Macro layer.
 
 * **Adjust from either order:** on Lower, the right Space/Raise thumb used to type `;`, so holding left
   Space (Lower) then right Space (Raise) gave a semicolon instead of Adjust. That key is now

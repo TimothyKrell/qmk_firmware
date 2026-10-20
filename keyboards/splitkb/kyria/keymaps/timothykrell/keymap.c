@@ -171,7 +171,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
  * |GameNorm|F2/Sft|4/Alt |5/Ctl |6/GUI |  0   |                              | Left |Dn/GUI|Up/Ctl|Rt/Alt| Sft  |  F12   |
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
- * | Gaming |F3/GUI|7/Ctl |8/Alt |9/Sft |  F5  |      |      |  |      |      |MsLeft|MsDn/S|MsUp/A|MsRt/C| GUI  |        |
+ * | QWERTY |F3/GUI|7/Ctl |8/Alt |9/Sft |  F5  |      |      |  |      |      |MsLeft|MsDn/S|MsUp/A|MsRt/C| GUI  |        |
  * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
  *                        |      |      |      |      |      |  |      |      |      |      |      |
  *                        `----------------------------------'  `----------------------------------'
@@ -179,7 +179,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_GRAISE] = LAYOUT_split_3x6_5(
       KC_TAB,           KC_F1,         KC_1,          KC_2,          KC_3,          KC_F4,                                               KC_F6,   KC_F7,           KC_F8,          KC_F9,           KC_F10,          KC_F11,
       DF(_GAMING_NORM), LSFT_T(KC_F2), LALT_T(KC_4),  LCTL_T(KC_5),  LGUI_T(KC_6),  KC_0,                                                KC_LEFT, RGUI_T(KC_DOWN), RCTL_T(KC_UP),  RALT_T(KC_RGHT), RSFT_T(_______), KC_F12,
-      DF(_GAMING),      LGUI_T(KC_F3), LCTL_T(KC_7),  LALT_T(KC_8),  LSFT_T(KC_9),  KC_F5,       _______, _______,     _______, _______, MS_LEFT, RSFT_T(MS_DOWN), RALT_T(MS_UP),  RCTL_T(MS_RGHT), RGUI_T(_______), _______,
+      DF(_QWERTY),      LGUI_T(KC_F3), LCTL_T(KC_7),  LALT_T(KC_8),  LSFT_T(KC_9),  KC_F5,       _______, _______,     _______, _______, MS_LEFT, RSFT_T(MS_DOWN), RALT_T(MS_UP),  RCTL_T(MS_RGHT), RGUI_T(_______), _______,
                                                       _______,       _______,       _______,     _______, _______,     _______, _______, _______, _______,         _______
     ),
 /*

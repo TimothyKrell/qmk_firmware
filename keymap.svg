@@ -1551,8 +1551,8 @@ path.combo { stroke: #7f7f7f; }
 </g>
 <g transform="translate(30, 195)" class="key keypos-24">
 <rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key"/>
-<a href="#GAMING">
-<text x="0" y="0" class="key tap layer-activator">GAMING</text>
+<a href="#QWERTY">
+<text x="0" y="0" class="key tap layer-activator">QWERTY</text>
 </a><text x="0" y="26" class="key hold">toggle</text>
 </g>
 <g transform="translate(90, 195)" class="key keypos-25">
