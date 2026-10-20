@@ -33,8 +33,9 @@ tools/show-keymap.sh  # toggle an overlay of keymap-screen.svg over the current 
 ```
 
 `keymap-screen.svg` is a 3×3 landscape grid of all layers for a 16:9 screen. The overlay (a layer-shell surface,
-so windows underneath never move; needs `gtk4-layer-shell`) reloads it whenever
-`draw.sh` rewrites it, so the Mod+/ view always matches the last build. Any key or click closes it.
+so windows underneath never move; needs `gtk4-layer-shell`) stays resident and hidden after
+`show-keymap.sh --daemon` (run by niri at login), so Mod+/ shows it instantly. It reloads the SVG whenever
+`draw.sh` rewrites it, so the Mod+/ view always matches the last build. Any key or click hides it.
 
 To flash: plug in the left half alone, run `tools/flash.sh`, then tap the reset button on its controller.
 Repeat for the right half. Both halves must run the same build.
