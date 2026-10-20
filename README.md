@@ -29,10 +29,11 @@ tools/build.sh        # compile -> splitkb_kyria_rev1_base_timothykrell.hex
 tools/verify.sh       # prove the compiled keymap still matches the reference, key by key
 tools/flash.sh        # build, wait for RESET, flash. Run once per half.
 tools/draw.sh         # regenerate keymap.svg and keymap-screen.svg (keymap-drawer, via uvx); build.sh runs it too
-tools/show-keymap.sh  # toggle a full-screen view of keymap-screen.svg (bound to Mod+/ in niri)
+tools/show-keymap.sh  # toggle an overlay of keymap-screen.svg over the current screen (bound to Mod+/ in niri)
 ```
 
-`keymap-screen.svg` is a 3×3 landscape grid of all layers for a 16:9 screen. The viewer reloads it whenever
+`keymap-screen.svg` is a 3×3 landscape grid of all layers for a 16:9 screen. The overlay (a layer-shell surface,
+so windows underneath never move; needs `gtk4-layer-shell`) reloads it whenever
 `draw.sh` rewrites it, so the Mod+/ view always matches the last build. Any key or click closes it.
 
 To flash: plug in the left half alone, run `tools/flash.sh`, then tap the reset button on its controller.

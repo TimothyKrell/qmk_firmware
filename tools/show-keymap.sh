@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
-# Toggle the full-screen keymap viewer. Bound to Mod+/ in ~/.config/niri/config.kdl.
+# Toggle the keymap overlay. Bound to Mod+/ in ~/.config/niri/config.kdl.
 set -euo pipefail
 dir="$(dirname "$(readlink -f "$0")")"
-id=$(niri msg -j windows | python3 -c '
-import json, sys
-print(next((w["id"] for w in json.load(sys.stdin) if w["app_id"] == "dev.timothykrell.KeymapViewer"), ""))')
-if [ -n "$id" ]; then
-    niri msg action close-window --id "$id"
-else
-    exec python3 "$dir/keymap-viewer.py"
+pidfile="${XDG_RUNTIME_DIR:-/tmp}/keymap-overlay.pid"
+if pid=$(cat "$pidfile" 2>/dev/null) && grep -qs keymap-viewer.py "/proc/$pid/cmdline"; then
+    kill "$pid"
+    exit 0
 fi
+echo $$ > "$pidfile"
+# The layer-shell library has to load before libwayland, hence the preload.
+LD_PRELOAD=/usr/lib/libgtk4-layer-shell.so exec python3 "$dir/keymap-viewer.py"

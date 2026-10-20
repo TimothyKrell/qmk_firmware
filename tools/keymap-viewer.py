@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
-"""Full-screen keymap viewer. Shows keymap-screen.svg scaled to fit and reloads it when draw.sh rewrites it.
-Any key or click closes it. Launched (and toggled) by show-keymap.sh."""
+"""Keymap overlay. Shows keymap-screen.svg on a wlr-layer-shell overlay over the focused output, so tiled windows
+don't move. Reloads when draw.sh rewrites the SVG. Any key or click closes it. Launched (and toggled) by show-keymap.sh,
+which preloads libgtk4-layer-shell (it has to load before libwayland)."""
 import os
 import sys
 
@@ -8,11 +9,12 @@ import gi
 
 gi.require_version("Gdk", "4.0")
 gi.require_version("Gtk", "4.0")
-from gi.repository import Gdk, Gio, GLib, Gtk  # noqa: E402
+gi.require_version("Gtk4LayerShell", "1.0")
+from gi.repository import Gdk, Gio, GLib, Gtk, Gtk4LayerShell as LayerShell  # noqa: E402
 
 APP_ID = "dev.timothykrell.KeymapViewer"
 SVG = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "keymap-screen.svg")
-CSS = b"window { background: #000; } picture { margin: 24px; }"
+CSS = b"window { background: rgba(0, 0, 0, 0.85); } picture { margin: 24px; }"
 
 
 def on_activate(app):
@@ -42,7 +44,13 @@ def on_activate(app):
     css = Gtk.CssProvider()
     css.load_from_data(CSS)
     Gtk.StyleContext.add_provider_for_display(Gdk.Display.get_default(), css, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION)
-    win.fullscreen()
+    LayerShell.init_for_window(win)
+    LayerShell.set_namespace(win, "keymap-overlay")
+    LayerShell.set_layer(win, LayerShell.Layer.OVERLAY)
+    for edge in (LayerShell.Edge.TOP, LayerShell.Edge.BOTTOM, LayerShell.Edge.LEFT, LayerShell.Edge.RIGHT):
+        LayerShell.set_anchor(win, edge, True)
+    LayerShell.set_exclusive_zone(win, -1)  # cover panels too
+    LayerShell.set_keyboard_mode(win, LayerShell.KeyboardMode.EXCLUSIVE)
     win.present()
 
 
