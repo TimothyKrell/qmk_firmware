@@ -1,7 +1,7 @@
 # Overrides for keymap-screen.svg, the full-screen 16:9 view used by tools/show-keymap.sh.
 # Merged on top of keymap-drawer.yaml by draw.sh.
 draw_config:
-  n_columns: 3
+  n_columns: 3  # keep in sync with SCREEN_COLS in draw.sh
   dark_mode: true
   svg_extra_style: |
     text.label { font-size: 22px; }
