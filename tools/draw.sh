@@ -24,3 +24,12 @@ combos:
 YAML
 uvx --from keymap-drawer keymap -c "$ROOT/tools/keymap-drawer.yaml" draw "$tmp/keymap.yaml" > "$ROOT/keymap.svg"
 echo "Wrote $ROOT/keymap.svg"
+# Landscape copy for the full-screen viewer: same config with keymap-drawer-screen.yaml's draw_config on top.
+uvx --from keymap-drawer python - "$ROOT/tools/keymap-drawer.yaml" "$ROOT/tools/keymap-drawer-screen.yaml" > "$tmp/screen.yaml" <<'PY'
+import sys, yaml
+base, over = (yaml.safe_load(open(p)) for p in sys.argv[1:])
+base["draw_config"].update(over["draw_config"])
+yaml.safe_dump(base, sys.stdout, allow_unicode=True)
+PY
+uvx --from keymap-drawer keymap -c "$tmp/screen.yaml" draw "$tmp/keymap.yaml" > "$ROOT/keymap-screen.svg"
+echo "Wrote $ROOT/keymap-screen.svg"
